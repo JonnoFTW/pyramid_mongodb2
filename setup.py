@@ -7,7 +7,6 @@ def readfile(name):
 
 
 README = readfile('README.md')
-CHANGES = readfile('CHANGES.txt')
 
 install_requires = [
     'pyramid',
@@ -22,7 +21,7 @@ testing_extras = [
 ]
 
 setup(name='pyramid_mongodb2',
-      version='1.1',
+      version='1.2',
       description='An improved package that provides mongodb connectivity. Not compatible with pyramid_mongo or pyramid_mongodb',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
