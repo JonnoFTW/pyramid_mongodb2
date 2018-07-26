@@ -12,7 +12,7 @@ CHANGES = readfile('CHANGES.txt')
 install_requires = [
     'pyramid',
     'pymongo',
-    'pyramid_mongodb_debugtoolbar'
+    'pyramid_mongodb2_debugtoolbar'
 ]
 
 testing_extras = [
@@ -21,9 +21,9 @@ testing_extras = [
     'coverage',
 ]
 
-setup(name='pyramid_mongodb',
+setup(name='pyramid_mongodb2',
       version='1.0',
-      description='An improved package that provides mongodb connectivity. Not compatible with pyramid_mongo',
+      description='An improved package that provides mongodb connectivity. Not compatible with pyramid_mongo or pyramid_mongodb',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
           "Intended Audience :: Developers",
@@ -38,12 +38,12 @@ setup(name='pyramid_mongodb',
           "Topic :: Internet :: WWW/HTTP :: WSGI",
           "License :: MIT",
       ],
-      keywords='wsgi pylons pyramid mongodb pymongo pyramid_mongo_debugtoolbar',
+      keywords='wsgi pylons pyramid mongodb pymongo pyramid_mongodb2_debugtoolbar',
       author="Jonathan Mackenzie",
       author_email="pylons-discuss@googlegroups.com",
-      url="https://github.com/jonnoftw/pyramid_mongodb",
+      url="https://github.com/jonnoftw/pyramid_mongodb2",
       license="MIT",
-      packages=find_packages('pyramid_mongodb', exclude=['tests']),
+      packages=find_packages('pyramid_mongodb2', exclude=['tests']),
       include_package_data=True,
       zip_safe=False,
       install_requires=install_requires,
