@@ -9,7 +9,7 @@ Features
 * Supports multiple databases
 * Configuration only setup
 * Integrated debugtoolbar
-* Avoids recreating 
+* Avoids recreating and closing `MongoClient` on every request. 
 
 Setup
 -----
@@ -17,7 +17,7 @@ Setup
 pip install pyramid_mongodb 
 ```
 
-Add the following to your application's ini file, (include `pyramid_mongodb_debugtoolbar` if you want to debug):
+Add the following to your application's ini file, (include `pyramid_mongodb2_debugtoolbar` if you want to debug):
 
 ```ini
 [app:main]
@@ -28,10 +28,10 @@ mongo_db =
 pyramid.includes =
     pyramid_mako    
     pyramid_debugtoolbar
-    pyramid_mongodb
-    pyramid_mongodb_debugtoolbar
+    pyramid_mongodb2
+    pyramid_mongodb2_debugtoolbar
 debugtoolbar.includes =
-    pyramid_mongodb_debugtoolbar:MongoToolbar
+    pyramid_mongodb2_debugtoolbar:MongoToolbar
 ```
 The code will use `config.add_request_method()` to add a `Database` object to your requests, where each database is accessable by `db_database_name`, as defined in your configuration. 
 In your code where you can access `request`, you now have the following variables:
