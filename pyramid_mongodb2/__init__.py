@@ -47,5 +47,5 @@ def includeme(config):
 
     for db_name in mongo_dbs.strip().splitlines():
         fun = make_get_db(db_name=db_name)
-        config.add_request_method(fun, 'db_' + db_name, reify=True)
+        config.add_request_method(fun, 'db_' + db_name.replace('-', '_'), reify=True)
     config.scan(__name__)
