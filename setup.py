@@ -21,9 +21,10 @@ testing_extras = [
 ]
 
 setup(name='pyramid_mongodb2',
-      version='1.2',
+      version='1.4',
       description='An improved package that provides mongodb connectivity. Not compatible with pyramid_mongo or pyramid_mongodb',
-      long_description=README + '\n\n' + CHANGES,
+      long_description=README,
+      long_description_content_type="text/markdown",
       classifiers=[
           "Intended Audience :: Developers",
           "Programming Language :: Python",

@@ -1,7 +1,7 @@
 Pyramid Mongodb
 ===============
 
-A simple library to integrate mongodb into your pyramid application. Integrates with pyramid_mongodb_debugtoolbar.
+A simple library to integrate mongodb into your pyramid application. Integrates with [pyramid_mongodb2_debugtoolbar](https://pypi.org/project/pyramid_mongodb2_debugtoolbar/).
 
 Features
 --------
