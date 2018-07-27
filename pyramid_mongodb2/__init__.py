@@ -13,7 +13,7 @@ def includeme(config):
                                socketTimeoutMS=10000,
                                maxPoolSize=200,
                                maxIdleTimeMs=30000,
-                               appname='flex')
+                               appname=config.registry.package_name)
 
     def add_query_log(request):
         return []
