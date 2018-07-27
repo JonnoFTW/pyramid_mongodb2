@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 from pyramid_mongodb2_debugtoolbar import DebugMongo
-
+import re
 
 def includeme(config):
     debug = 'pyramid_mongodb2_debugtoolbar' in config.registry.settings.get('pyramid.includes')
@@ -45,7 +45,12 @@ def includeme(config):
 
         return get_db
 
-    for db_name in mongo_dbs.strip().splitlines():
+    for db_name in mongo_dbs.splitlines():
+        if '=' in db_name or ':' in db_name:
+            db_name, nice_name = (x.strip() for x in re.split(r'[=:]', db_name))
+        else:
+            nice_name = db_name
         fun = make_get_db(db_name=db_name)
-        config.add_request_method(fun, 'db_' + db_name.replace('-', '_'), reify=True)
+
+        config.add_request_method(fun, 'db_' + nice_name.replace('-', '_'), reify=True)
     config.scan(__name__)

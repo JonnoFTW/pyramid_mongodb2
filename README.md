@@ -26,6 +26,7 @@ mongo_dbs =
     foo
     bar
     baz-quux
+    foo-test = foo
 pyramid.includes =
     pyramid_mako    
     pyramid_debugtoolbar
@@ -38,6 +39,10 @@ The code will use `config.add_request_method()` to add a `Database` object to yo
 
 **Note**: database names with hyphens in them will be converted to underscores, that is database `baz-quux` will be accessible by `request.db_baz_quux`. 
 
+When doing `foo-test = foo`, the mongodb database with name `foo-test` will be assigned to `request.db_foo`. 
+This helps when testing so that you can use a separate database for development, testing and production without
+changing your application code, or if you just want to alias a database name.
+
  
 In your code where you can access `request`, you now have the following variables:
 
@@ -46,7 +51,7 @@ request.db
 request.db_foo
 request.db_bar
 request.db_baz_quux
-
+request.db_foo
 ```
 `request.db` is the `MongoClient` object, should you ever need it.
 
