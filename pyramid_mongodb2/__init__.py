@@ -1,9 +1,11 @@
 from pymongo import MongoClient
-from pyramid_mongodb2_debugtoolbar import DebugMongo
 import re
 
+from .debugtoolbar import DebugMongo, MongoToolbar
+
+
 def includeme(config):
-    debug = 'pyramid_mongodb2_debugtoolbar' in config.registry.settings.get('pyramid.includes')
+    debug = 'pyramid_mongodb2:debugtoolbar.MongoToolbar' in config.registry.settings.get('debugtoolbar.includes', '')
     db_url = config.registry.settings.get('mongo_uri')
     if db_url is None:
         raise ValueError("Please set mongo_uri in your configuration")
@@ -33,6 +35,7 @@ def includeme(config):
         return request.db[db_name]
 
     if debug:
+        config.registry.settings['debugtoolbar.extra_panels'].append(MongoToolbar)
         config.add_request_method(add_query_log, 'query_log', reify=True)
     config.add_request_method(add_db_conn, 'db', reify=True)
     mongo_dbs = config.registry.settings.get('mongo_dbs')

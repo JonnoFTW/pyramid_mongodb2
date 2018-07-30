@@ -1,14 +1,18 @@
 Pyramid Mongodb
 ===============
 
-A simple library to integrate mongodb into your pyramid application. Integrates with [pyramid_mongodb2_debugtoolbar](https://pypi.org/project/pyramid_mongodb2_debugtoolbar/).
+A simple library to integrate mongodb into your pyramid application. Comes with a debugtoolbar.
 
 Features
 --------
 
 * Supports multiple databases
 * Configuration only setup
-* Integrated debugtoolbar
+* Integrated debugtoolbar with:
+  * Shows db response times
+  * `explain()` for cursor results
+  * Connection information
+  * Database and collection stats
 * Avoids recreating and closing `MongoClient` on every request. 
 
 Setup
@@ -17,7 +21,7 @@ Setup
 pip install pyramid_mongodb2
 ```
 
-Add the following to your application's ini file, (include `pyramid_mongodb2_debugtoolbar` if you want to debug):
+Add the following to your application's ini file, (include `pyramid_mongodb2:debugtoolbar.MongoToolbar` in `debugtoolbar.includes` if you want to debug):
 
 ```ini
 [app:main]
@@ -31,9 +35,8 @@ pyramid.includes =
     pyramid_mako    
     pyramid_debugtoolbar
     pyramid_mongodb2
-    pyramid_mongodb2_debugtoolbar
 debugtoolbar.includes =
-    pyramid_mongodb2_debugtoolbar:MongoToolbar
+    pyramid_mongodb2:debugtoolbar.MongoToolbar
 ```
 The code will use `config.add_request_method()` to add a `Database` object to your requests, where each database is accessible by `db_database_name`, as defined in your configuration.
 
@@ -67,3 +70,28 @@ def my_view(request):
         'other_data': request.db_bar.visitors.insert_one({'person': request.remote_addr}),
     }
 ```
+
+Debugging
+---------
+
+With debugging enabled, all queries will be logged in `request.query_log`, when the debugtoolbar is opened, you can 
+then view the execution time and `explain()` of cursor results. You can also see connection settings and stats for 
+databases and collections.
+
+Screenshots
+-----------
+
+Here's what the toolbar looks like in action:
+
+Clicking the database or collection name will  take you to the relevant section of the collections tab. Clicking the operation name will take you to its pymongo documentation.
+![debug1](https://user-images.githubusercontent.com/650314/43239055-06890ce6-90d0-11e8-8761-53460bc65ced.png)
+
+Clicking the explain button will show you the `explain()` result for a cursor.
+![debug2](https://user-images.githubusercontent.com/650314/43239051-05e0e8f4-90d0-11e8-93f4-8a4d1c42af14.png)
+You can view detailed connection information here, clicking the field name will take you to the pymongo documentation for that field.
+![debug3](https://user-images.githubusercontent.com/650314/43239052-06099272-90d0-11e8-8cb0-d51465dd12a2.png)
+This page show `dbstats` for all connected databases used in this request and their collections.
+![debug4](https://user-images.githubusercontent.com/650314/43239053-063631f6-90d0-11e8-9fc0-9703e4a70464.png)
+Here we can see the use of multiple databases in a single project.
+![debug5](https://user-images.githubusercontent.com/650314/43239054-065f8524-90d0-11e8-9a5a-889e8b23c207.png)
+

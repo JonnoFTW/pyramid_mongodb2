@@ -10,8 +10,7 @@ README = readfile('README.md')
 
 install_requires = [
     'pyramid',
-    'pymongo',
-    'pyramid_mongodb2_debugtoolbar'
+    'pymongo'
 ]
 
 testing_extras = [
@@ -21,7 +20,7 @@ testing_extras = [
 ]
 
 setup(name='pyramid_mongodb2',
-      version='1.5.5',
+      version='1.6',
       description='An improved package that provides mongodb connectivity. Not compatible with pyramid_mongo or pyramid_mongodb',
       long_description=README,
       long_description_content_type="text/markdown",
@@ -38,7 +37,7 @@ setup(name='pyramid_mongodb2',
           "Topic :: Internet :: WWW/HTTP :: WSGI",
           "License :: OSI Approved :: MIT License",
       ],
-      keywords='wsgi pylons pyramid mongodb pymongo pyramid_mongodb2_debugtoolbar',
+      keywords='wsgi pylons pyramid mongodb pymongo',
       author="Jonathan Mackenzie",
       author_email="pylons-discuss@googlegroups.com",
       url="https://github.com/jonnoftw/pyramid_mongodb2",
