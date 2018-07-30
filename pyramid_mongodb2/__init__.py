@@ -1,11 +1,11 @@
 from pymongo import MongoClient
 import re
 
-from .debugtoolbar import DebugMongo, MongoToolbar
+from .mongo_toolbar import DebugMongo, MongoToolbar
 
 
 def includeme(config):
-    debug = 'pyramid_mongodb2:debugtoolbar.MongoToolbar' in config.registry.settings.get('debugtoolbar.includes', '')
+    debug = 'pyramid_mongodb2:MongoToolbar' in config.registry.settings.get('debugtoolbar.includes', '')
     db_url = config.registry.settings.get('mongo_uri')
     if db_url is None:
         raise ValueError("Please set mongo_uri in your configuration")

@@ -20,7 +20,7 @@ testing_extras = [
 ]
 
 setup(name='pyramid_mongodb2',
-      version='1.6',
+      version='1.6.1',
       description='An improved package that provides mongodb connectivity. Not compatible with pyramid_mongo or pyramid_mongodb',
       long_description=README,
       long_description_content_type="text/markdown",

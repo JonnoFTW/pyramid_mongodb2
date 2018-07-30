@@ -21,7 +21,7 @@ Setup
 pip install pyramid_mongodb2
 ```
 
-Add the following to your application's ini file, (include `pyramid_mongodb2:debugtoolbar.MongoToolbar` in `debugtoolbar.includes` if you want to debug):
+Add the following to your application's ini file, (include `pyramid_mongodb2:MongoToolbar` in `debugtoolbar.includes` if you want to debug):
 
 ```ini
 [app:main]
@@ -36,7 +36,7 @@ pyramid.includes =
     pyramid_debugtoolbar
     pyramid_mongodb2
 debugtoolbar.includes =
-    pyramid_mongodb2:debugtoolbar.MongoToolbar
+    pyramid_mongodb2:MongoToolbar
 ```
 The code will use `config.add_request_method()` to add a `Database` object to your requests, where each database is accessible by `db_database_name`, as defined in your configuration.
 
