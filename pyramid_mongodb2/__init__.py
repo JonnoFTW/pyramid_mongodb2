@@ -5,12 +5,14 @@ from .mongo_toolbar import DebugMongo, MongoToolbar
 
 
 def includeme(config):
-    debug = 'pyramid_mongodb2:MongoToolbar' in config.registry.settings.get('debugtoolbar.includes', '')
+    debug = 'pyramid_mongodb2:MongoToolbar' in config.registry.settings.get('debugtoolbar.includes', '') \
+            and 'pyramid_debugtoolbar' in config.registry.settings.get('pyramid.includes', '')
     db_url = config.registry.settings.get('mongo_uri')
     if db_url is None:
         raise ValueError("Please set mongo_uri in your configuration")
+    timeout = int(config.registry.settings.get('mongo_server_selection_timeout', 500))
     mongo_client = MongoClient(db_url,
-                               serverSelectionTimeoutMS=10000,
+                               serverSelectionTimeoutMS=timeout,
                                connectTimeoutMS=3000,
                                socketTimeoutMS=10000,
                                maxPoolSize=200,
@@ -35,6 +37,9 @@ def includeme(config):
         return request.db[db_name]
 
     if debug:
+
+        if 'debugtoolbar.extra_panels' not in config.registry:
+            config.registry.settings['debugtoolbar.extra_panels'] = []
         config.registry.settings['debugtoolbar.extra_panels'].append(MongoToolbar)
         config.add_request_method(add_query_log, 'query_log', reify=True)
     config.add_request_method(add_db_conn, 'db', reify=True)
@@ -54,6 +59,6 @@ def includeme(config):
         else:
             nice_name = db_name
         fun = make_get_db(db_name=db_name)
-
-        config.add_request_method(fun, 'db_' + nice_name.replace('-', '_'), reify=True)
+        req_name = 'db_' + nice_name.replace('-', '_')
+        config.add_request_method(fun, req_name, reify=True)
     config.scan(__name__)
