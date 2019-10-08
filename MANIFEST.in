@@ -1,1 +1,2 @@
 graft pyramid_mongodb2
+include pyramid_mongodb2/templates/*.mako
