@@ -46,6 +46,9 @@ setup(name='pyramid_mongodb2',
       include_package_data=True,
       zip_safe=False,
       install_requires=install_requires,
+      package_data = {
+          'pyramid_mongodb2': ['templates/*.mako']
+      },
       extras_require={
           'testing': testing_extras,
       },
