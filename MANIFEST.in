@@ -1,3 +1,3 @@
-graft pyramid_mongodb2
-include pyramid_mongodb2/templates/*.mako
+include LICENSE.txt
+global-exclude .DS_Store  # annoying files scattered about on a Mac
 

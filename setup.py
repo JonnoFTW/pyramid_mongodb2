@@ -10,7 +10,8 @@ README = readfile('README.md')
 
 install_requires = [
     'pyramid',
-    'pymongo'
+    'pyramid-debugtoolbar',
+    'pymongo',
 ]
 
 testing_extras = [
@@ -32,6 +33,8 @@ setup(name='pyramid_mongodb2',
           "Programming Language :: Python :: 3.4",
           "Programming Language :: Python :: 3.5",
           "Programming Language :: Python :: 3.6",
+          "Programming Language :: Python :: 3.7",
+          "Programming Language :: Python :: 3.8",
           "Framework :: Pyramid",
           "Topic :: Internet :: WWW/HTTP :: WSGI",
           "License :: OSI Approved :: MIT License",
@@ -41,14 +44,13 @@ setup(name='pyramid_mongodb2',
       author_email="pylons-discuss@googlegroups.com",
       url="https://github.com/jonnoftw/pyramid_mongodb2",
       license="MIT",
-      packages=find_packages('pyramid_mongodb2', exclude=['tests']),
-      package_dir={'':'.'},
+      packages = ['pyramid_mongodb2'],
       include_package_data=True,
-      zip_safe=False,
-      install_requires=install_requires,
       package_data = {
           'pyramid_mongodb2': ['templates/*.mako']
       },
+      zip_safe=False,
+      install_requires=install_requires,
       extras_require={
           'testing': testing_extras,
       },
