@@ -3,6 +3,7 @@ import re
 
 from .mongo_toolbar import DebugMongo, MongoToolbar
 
+__version__ = "1.6.5"
 
 def includeme(config):
     debug = 'pyramid_mongodb2:MongoToolbar' in config.registry.settings.get('debugtoolbar.includes', '') \
